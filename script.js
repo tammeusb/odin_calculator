@@ -32,23 +32,40 @@ let secondNumber = '';
 //querySelectors
 
 const calculatorNumbers = document.querySelector('.numbers');
-const buttons = document.querySelectorAll('.button');
 
-for (i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener('click', (e) => {  
+const numberButtons = document.querySelectorAll('.number');
+const operatorButtons = document.querySelectorAll('.operator');
+
+const updateDisplay = function() {  
+    calculatorNumbers.textContent = firstNumber + "" + operator + "" + secondNumber;
+}
+
+for (i = 0; i < numberButtons.length; i++) {
+    numberButtons[i].addEventListener('click', (e) => {  
         if (operator === '') firstNumber += e.target.textContent;
         else if (operator !== '') secondNumber += e.target.textContent;
         updateDisplay();
     })
 }
 
-const updateDisplay = function() {
-    calculatorNumbers.textContent = firstNumber + "" + operator + "" + secondNumber;
+for (i = 0; i < operatorButtons.length; i++) {
+    operatorButtons[i].addEventListener('click', (e) => {
+        console.log('click');
+        if (firstNumber !== '') operator = e.target.textContent; 
+        updateDisplay();
+    })
 }
-
-//how to add number to display's "firstNumber"'s textContent?
-//if 'operator' is still null, keep attaching numbers to firstNumber's textcontent
-//when operator is pressed, convert firstNumber's value into an integer and store it
-//after operator has been pressed, only attach numbers to secondNumber's textContent.
+//make separate function for number buttons, operator buttons and equals button so that they
+//can be enabled and disabled at different times?
+//begin:
+//   'firstNumber' is blank
+//    operator and equals buttons are disabled. 
+//if 'firstNumber' contains at least one number, enable operator buttons.
+//until operator is pressed, keep attaching numbers to 'firstNumber'
+//when operator is pressed:
+//  convert firstNumber's value into an integer and store it
+//  begin attaching numbers to secondNumber's textContent.
+//  disable operator and enable equals
 //when equals is pressed, convert secondNumber's value into an integer and pass all 
 //three to operate()
+//clear calculator and send operate() result to new 'firstNumber' value
