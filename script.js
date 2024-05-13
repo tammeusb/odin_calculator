@@ -13,7 +13,8 @@ const multiply = function(x,y) {
 }
 
 const divide = function(x,y) {
-    return x / y
+    if (y === 0) return false
+    else return (Math.round(x / y * 10000)) / 10000
 }
 
 const operate = function(x,y,operator) {
@@ -45,6 +46,12 @@ const updateDisplay = function() {
     calculatorNumbers.textContent = firstNumber + "" + operator + "" + secondNumber;
 }
 
+const clearDisplay = function() {
+    firstNumber = '';
+    operator = '';
+    secondNumber = '';
+}
+
 for (i = 0; i < numberButtons.length; i++) {
     numberButtons[i].addEventListener('click', (e) => {  
         if (operator === '') firstNumber += e.target.textContent;
@@ -57,10 +64,15 @@ for (i = 0; i < operatorButtons.length; i++) {
     operatorButtons[i].addEventListener('click', (e) => {
         console.log('click');
         if (firstNumber !== '' && operator === '') operator = e.target.textContent; 
-        if (secondNumber !== '') {
+        if (secondNumber !== '' && operate(+firstNumber, +secondNumber, operator)) {
             firstNumber = operate(+firstNumber, +secondNumber, operator);
             operator = e.target.textContent;
             secondNumber = '';
+        }
+        if (secondNumber !== '' && !operate(+firstNumber, +secondNumber, operator)) {
+            clearDisplay(); 
+            updateDisplay();
+            alert("You know you can't do that!")
         }
         updateDisplay();
     })
@@ -68,20 +80,28 @@ for (i = 0; i < operatorButtons.length; i++) {
 
 equalsButton.addEventListener('click', (e) => {
     console.log('click');
-    if (secondNumber !== '') {
+    if (secondNumber !== '' && operate(+firstNumber, +secondNumber, operator)) {
         firstNumber = operate(+firstNumber, +secondNumber, operator);
         operator = '';
         secondNumber = '';
         updateDisplay();
+    } 
+    if (secondNumber !== '' && !operate(+firstNumber, +secondNumber, operator)) {
+        clearDisplay();
+        updateDisplay();
+        alert("You know you can't do that!")
     }
 })
 
 clearButton.addEventListener('click', (e) => {
-    firstNumber = '';
-    operator = '';
-    secondNumber = '';
+    clearDisplay();
     updateDisplay();
 });
+
+function isValidDivide(operator, secondNumber) {
+    if (operator === '/' && secondNumber === '0') return false
+    else return true
+}
 
 //make separate function for number buttons, operator buttons and equals button so that they
 //can be enabled and disabled at different times
