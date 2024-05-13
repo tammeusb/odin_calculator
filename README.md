@@ -1,0 +1,1 @@
+Odin Project's final JavaScript Foundations project
