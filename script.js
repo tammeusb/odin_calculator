@@ -19,8 +19,9 @@ const divide = function(x,y) {
 const operate = function(x,y,operator) {
     if (operator === '+') return add(x,y)
     if (operator === '-') return subtract(x,y)
-    if (operator === '*') return multiply(x,y)
+    if (operator === 'x') return multiply(x,y)
     if (operator === '/') return divide(x,y)
+    else console.log("error!");
 }
 
 //variables for display
@@ -35,9 +36,15 @@ const calculatorNumbers = document.querySelector('.numbers');
 
 const numberButtons = document.querySelectorAll('.number');
 const operatorButtons = document.querySelectorAll('.operator');
+const equalsButton = document.querySelector('.equals');
 
 const updateDisplay = function() {  
     calculatorNumbers.textContent = firstNumber + "" + operator + "" + secondNumber;
+}
+
+const clearDisplay = function() {
+    operator = '';
+    secondNumber = '';
 }
 
 for (i = 0; i < numberButtons.length; i++) {
@@ -51,10 +58,19 @@ for (i = 0; i < numberButtons.length; i++) {
 for (i = 0; i < operatorButtons.length; i++) {
     operatorButtons[i].addEventListener('click', (e) => {
         console.log('click');
-        if (firstNumber !== '') operator = e.target.textContent; 
+        if (firstNumber !== '' && operator === '') operator = e.target.textContent; 
         updateDisplay();
     })
 }
+
+equalsButton.addEventListener('click', (e) => {
+    console.log('click');
+    if (secondNumber !== '') {
+        firstNumber = operate(+firstNumber, +secondNumber, operator);
+        clearDisplay();
+        updateDisplay();
+    }
+})
 //make separate function for number buttons, operator buttons and equals button so that they
 //can be enabled and disabled at different times?
 //begin:
