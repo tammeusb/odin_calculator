@@ -59,6 +59,11 @@ for (i = 0; i < operatorButtons.length; i++) {
     operatorButtons[i].addEventListener('click', (e) => {
         console.log('click');
         if (firstNumber !== '' && operator === '') operator = e.target.textContent; 
+        if (secondNumber !== '') {
+            firstNumber = operate(+firstNumber, +secondNumber, operator);
+            operator = e.target.textContent
+            secondNumber = '';
+        }
         updateDisplay();
     })
 }
@@ -72,7 +77,7 @@ equalsButton.addEventListener('click', (e) => {
     }
 })
 //make separate function for number buttons, operator buttons and equals button so that they
-//can be enabled and disabled at different times?
+//can be enabled and disabled at different times
 //begin:
 //   'firstNumber' is blank
 //    operator and equals buttons are disabled. 
