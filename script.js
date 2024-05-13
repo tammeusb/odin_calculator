@@ -25,9 +25,9 @@ const operate = function(x,y,operator) {
 
 //variables for display
 
-let firstNumber = 0;
-let operator = 0;
-let secondNumber = 0;
+let firstNumber = '';
+let operator = '';
+let secondNumber = '';
 
 //querySelectors
 
@@ -36,7 +36,8 @@ const buttons = document.querySelectorAll('.button');
 
 for (i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', (e) => {  
-        firstNumber = e.target.textContent;
+        if (operator === '') firstNumber += e.target.textContent;
+        else if (operator !== '') secondNumber += e.target.textContent;
         updateDisplay();
     })
 }
@@ -45,3 +46,9 @@ const updateDisplay = function() {
     calculatorNumbers.textContent = firstNumber + "" + operator + "" + secondNumber;
 }
 
+//how to add number to display's "firstNumber"'s textContent?
+//if 'operator' is still null, keep attaching numbers to firstNumber's textcontent
+//when operator is pressed, convert firstNumber's value into an integer and store it
+//after operator has been pressed, only attach numbers to secondNumber's textContent.
+//when equals is pressed, convert secondNumber's value into an integer and pass all 
+//three to operate()
