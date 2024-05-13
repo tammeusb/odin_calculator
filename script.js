@@ -37,14 +37,12 @@ const calculatorNumbers = document.querySelector('.numbers');
 const numberButtons = document.querySelectorAll('.number');
 const operatorButtons = document.querySelectorAll('.operator');
 const equalsButton = document.querySelector('.equals');
+const clearButton = document.querySelector('.clear')
+
+//event listeners
 
 const updateDisplay = function() {  
     calculatorNumbers.textContent = firstNumber + "" + operator + "" + secondNumber;
-}
-
-const clearDisplay = function() {
-    operator = '';
-    secondNumber = '';
 }
 
 for (i = 0; i < numberButtons.length; i++) {
@@ -61,7 +59,7 @@ for (i = 0; i < operatorButtons.length; i++) {
         if (firstNumber !== '' && operator === '') operator = e.target.textContent; 
         if (secondNumber !== '') {
             firstNumber = operate(+firstNumber, +secondNumber, operator);
-            operator = e.target.textContent
+            operator = e.target.textContent;
             secondNumber = '';
         }
         updateDisplay();
@@ -72,10 +70,19 @@ equalsButton.addEventListener('click', (e) => {
     console.log('click');
     if (secondNumber !== '') {
         firstNumber = operate(+firstNumber, +secondNumber, operator);
-        clearDisplay();
+        operator = '';
+        secondNumber = '';
         updateDisplay();
     }
 })
+
+clearButton.addEventListener('click', (e) => {
+    firstNumber = '';
+    operator = '';
+    secondNumber = '';
+    updateDisplay();
+});
+
 //make separate function for number buttons, operator buttons and equals button so that they
 //can be enabled and disabled at different times
 //begin:
