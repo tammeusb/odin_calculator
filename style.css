@@ -17,20 +17,37 @@ body {
 }
 
 .display {
-    width: 400px;
+    border: 2px solid grey;
+    width: 360px;
     flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+    padding: 20px;
     background-color: lightblue;
-    margin-bottom: 50px;
+    margin-bottom: 80px;
 }
 
 .container-buttons {
     flex: 1;
     display: flex;
     flex-wrap: wrap;
+    /*border: 2px solid black;*/
 }
 
 .button {
-    border: 1px solid black;
+    border: 1px solid black;    
     height: 100px;
     width: 100px;
+}
+
+.numbers {
+    font-size: 50px;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    justify-content: center;
 }

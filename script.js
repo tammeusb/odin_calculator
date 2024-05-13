@@ -26,3 +26,7 @@ const operate = function(x,y,operator) {
     if (operator === '*') return multiply(x,y)
     if (operator === '/') return divide(x,y)
 }
+
+const calculatorNumbers = document.querySelector('.numbers');
+
+calculatorNumbers.textContent = "2 + 3";
