@@ -1,3 +1,5 @@
+//basic operation functions
+
 const add = function(x,y) {
     return x + y
 }
@@ -14,12 +16,6 @@ const divide = function(x,y) {
     return x / y
 }
 
-//variables for display
-
-let firstNumber = 0;
-let secondNumber = 0;
-let operator = 0;
-
 const operate = function(x,y,operator) {
     if (operator === '+') return add(x,y)
     if (operator === '-') return subtract(x,y)
@@ -27,6 +23,25 @@ const operate = function(x,y,operator) {
     if (operator === '/') return divide(x,y)
 }
 
-const calculatorNumbers = document.querySelector('.numbers');
+//variables for display
 
-calculatorNumbers.textContent = "2 + 3";
+let firstNumber = 0;
+let operator = 0;
+let secondNumber = 0;
+
+//querySelectors
+
+const calculatorNumbers = document.querySelector('.numbers');
+const buttons = document.querySelectorAll('.button');
+
+for (i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', (e) => {  
+        firstNumber = e.target.textContent;
+        updateDisplay();
+    })
+}
+
+const updateDisplay = function() {
+    calculatorNumbers.textContent = firstNumber + "" + operator + "" + secondNumber;
+}
+
