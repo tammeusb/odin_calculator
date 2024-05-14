@@ -77,6 +77,7 @@ for (i = 0; i < operatorButtons.length; i++) {
             alert("You know you can't do that!")
         }
         if (firstNumber === '' && e.target.textContent === '-') firstNumber = e.target.textContent;
+        if (firstNumber !== '' && operator !== '' && operator !== '-' && e.target.textContent === '-') secondNumber = e.target.textContent;
         updateDisplay();
     })
 }
