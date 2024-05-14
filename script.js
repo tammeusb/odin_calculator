@@ -74,6 +74,7 @@ for (i = 0; i < operatorButtons.length; i++) {
             updateDisplay();
             alert("You know you can't do that!")
         }
+        if (firstNumber === '' && e.target.textContent === '-') firstNumber = e.target.textContent;
         updateDisplay();
     })
 }
