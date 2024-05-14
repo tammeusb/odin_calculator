@@ -64,12 +64,12 @@ for (i = 0; i < operatorButtons.length; i++) {
     operatorButtons[i].addEventListener('click', (e) => {
         console.log('click');
         if (firstNumber !== '' && operator === '') operator = e.target.textContent; 
-        if (secondNumber !== '' && operate(+firstNumber, +secondNumber, operator)) {
+        if (secondNumber !== '' && operate(+firstNumber, +secondNumber, operator) !== false) {
             firstNumber = Math.round((operate(+firstNumber, +secondNumber, operator)) * 10000) / 10000;
             operator = e.target.textContent;
             secondNumber = '';  
         }
-        if (secondNumber !== '' && !operate(+firstNumber, +secondNumber, operator)) {
+        if (secondNumber !== '' && operate(+firstNumber, +secondNumber, operator) === false) {
             clearDisplay(); 
             updateDisplay();
             alert("You know you can't do that!")
@@ -80,13 +80,13 @@ for (i = 0; i < operatorButtons.length; i++) {
 
 equalsButton.addEventListener('click', (e) => {
     console.log('click');
-    if (secondNumber !== '' && operate(+firstNumber, +secondNumber, operator)) {
+    if (secondNumber !== '' && operate(+firstNumber, +secondNumber, operator) !== false) {
         firstNumber = Math.round((operate(+firstNumber, +secondNumber, operator)) * 10000) / 10000;
         operator = '';
         secondNumber = '';
         updateDisplay();
     } 
-    if (secondNumber !== '' && !operate(+firstNumber, +secondNumber, operator)) {
+    if (secondNumber !== '' && operate(+firstNumber, +secondNumber, operator) === false) {
         clearDisplay();
         updateDisplay();
         alert("You know you can't do that!")
