@@ -67,7 +67,7 @@ for (i = 0; i < operatorButtons.length; i++) {
         if (secondNumber !== '' && operate(+firstNumber, +secondNumber, operator)) {
             firstNumber = Math.round((operate(+firstNumber, +secondNumber, operator)) * 10000) / 10000;
             operator = e.target.textContent;
-            secondNumber = '';
+            secondNumber = '';  
         }
         if (secondNumber !== '' && !operate(+firstNumber, +secondNumber, operator)) {
             clearDisplay(); 
