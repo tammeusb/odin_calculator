@@ -40,7 +40,7 @@ const operatorButtons = document.querySelectorAll('.operator');
 const equalsButton = document.querySelector('.equals');
 const clearButton = document.querySelector('.clear');
 const backButton = document.querySelector('.backspace');
-const decimalBUtton = document.querySelector('.decimal');
+const decimalButton = document.querySelector('.decimal');
 
 //event listeners
 
@@ -116,6 +116,17 @@ backButton.addEventListener('click', (e) => {
         secondNumber = +secondNumber.toString().slice(0,-1); 
     updateDisplay();
 })
+
+decimalButton.addEventListener('click', (e) => {
+    console.log('click');
+    if (operator === '' && !checkDecimal(firstNumber)) firstNumber += e.target.textContent;
+    else if (operator !== '' && !checkDecimal(secondNumber)) secondNumber += e.target.textContent;
+    updateDisplay();    
+})
+
+function checkDecimal(number) {
+    return number.toString().split('').includes('.');
+}
 
 //make separate function for number buttons, operator buttons and equals button so that they
 //can be enabled and disabled at different times
