@@ -14,7 +14,7 @@ const multiply = function(x,y) {
 
 const divide = function(x,y) {
     if (y === 0) return false
-    else return (Math.round(x / y * 10000)) / 10000
+    else return x / y
 }
 
 const operate = function(x,y,operator) {
@@ -38,7 +38,9 @@ const calculatorNumbers = document.querySelector('.numbers');
 const numberButtons = document.querySelectorAll('.number');
 const operatorButtons = document.querySelectorAll('.operator');
 const equalsButton = document.querySelector('.equals');
-const clearButton = document.querySelector('.clear')
+const clearButton = document.querySelector('.clear');
+const backButton = document.querySelector('.backspace');
+const decimalBUtton = document.querySelector('.decimal');
 
 //event listeners
 
@@ -103,6 +105,17 @@ function isValidDivide(operator, secondNumber) {
     if (operator === '/' && secondNumber === '0') return false
     else return true
 }
+
+backButton.addEventListener('click', (e) => {
+    console.log("click");
+    if (secondNumber === '' && operator === '' && firstNumber !== '')
+        firstNumber = '';
+    if (secondNumber === '' && operator !== '')
+        operator = '';
+    if (secondNumber !== '')
+        secondNumber = '';
+    updateDisplay();
+})
 
 //make separate function for number buttons, operator buttons and equals button so that they
 //can be enabled and disabled at different times
