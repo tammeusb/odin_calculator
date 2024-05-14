@@ -109,11 +109,11 @@ function isValidDivide(operator, secondNumber) {
 backButton.addEventListener('click', (e) => {
     console.log("click");
     if (secondNumber === '' && operator === '' && firstNumber !== '')
-        firstNumber = '';
+        firstNumber = +firstNumber.toString().slice(0,-1);  
     if (secondNumber === '' && operator !== '')
         operator = '';
     if (secondNumber !== '')
-        secondNumber = '';
+        secondNumber = +secondNumber.toString().slice(0,-1); 
     updateDisplay();
 })
 
