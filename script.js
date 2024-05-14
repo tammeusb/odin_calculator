@@ -65,7 +65,7 @@ for (i = 0; i < operatorButtons.length; i++) {
         console.log('click');
         if (firstNumber !== '' && operator === '') operator = e.target.textContent; 
         if (secondNumber !== '' && operate(+firstNumber, +secondNumber, operator)) {
-            firstNumber = operate(+firstNumber, +secondNumber, operator);
+            firstNumber = Math.round((operate(+firstNumber, +secondNumber, operator)) * 10000) / 10000;
             operator = e.target.textContent;
             secondNumber = '';
         }
@@ -81,7 +81,7 @@ for (i = 0; i < operatorButtons.length; i++) {
 equalsButton.addEventListener('click', (e) => {
     console.log('click');
     if (secondNumber !== '' && operate(+firstNumber, +secondNumber, operator)) {
-        firstNumber = operate(+firstNumber, +secondNumber, operator);
+        firstNumber = Math.round((operate(+firstNumber, +secondNumber, operator)) * 10000) / 10000;
         operator = '';
         secondNumber = '';
         updateDisplay();
