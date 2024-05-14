@@ -106,6 +106,9 @@ function isValidDivide(operator, secondNumber) {
     else return true
 }
 
+//BUG: backButton returns NaN if firstNumber or secondNumber
+//begin with '-'. Forced NaN to convert to '-'.
+
 backButton.addEventListener('click', (e) => {
     console.log("click");
     if (secondNumber === '' && operator === '' && firstNumber !== '')
@@ -113,7 +116,11 @@ backButton.addEventListener('click', (e) => {
     if (secondNumber === '' && operator !== '')
         operator = '';
     if (secondNumber !== '')
-        secondNumber = +secondNumber.toString().slice(0,-1); 
+        secondNumber = +secondNumber.toString().slice(0,-1);
+    if (isNaN(firstNumber)) firstNumber = '-';
+    if (isNaN(secondNumber)) secondNumber = '-';
+    if (firstNumber === 0) clearDisplay();
+    if (secondNumber === 0) secondNumber = '';  
     updateDisplay();
 })
 
